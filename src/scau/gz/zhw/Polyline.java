@@ -321,27 +321,15 @@ public class Polyline extends Vector{
 				Point b2 = line3.intercourse(newUp);
 				//检查新光栏的交点是否在原光栏内
 				//如果在就使用新光栏
-				Line originUp = up;
-				Line originDown = down;
-				if(isInLightBar(originUp,originDown,b1)){
+				boolean isDownLineInLightBar = isInLightBar(up,down,b1);
+				boolean isUpLineInLightBar = isInLightBar(up,down,b2);
+				if(isDownLineInLightBar){
 					down = newDown;
 				}
-				if(isInLightBar(originUp,originDown,b2)){
+				if(isUpLineInLightBar){
 					up = newUp;
 				}
 
-//				if(isInLightBar(up, down, b1) && isInLightBar(up, down, b2)) {
-//					down = newDown;
-//					up = newUp;
-//				}else {
-//					//只有b1在光栏内
-//					if(isInLightBar(up, down, b1)) {
-//						down = new Line(p1,b1);
-//					}
-//					if(isInLightBar(up, down, b2)) {
-//						up = new Line(p1,b2);
-//					}
-//				}
 				
 			}else {
 				points.get(i-1).setEnable(true);
@@ -355,9 +343,7 @@ public class Polyline extends Vector{
 				down = new Line(angle2-angle1, p1);
 				up = new Line(angle1+angle2,p1);
 			}
-			
-			
-			
+
 		}
 		
 		
