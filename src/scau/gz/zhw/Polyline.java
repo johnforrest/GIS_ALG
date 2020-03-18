@@ -285,7 +285,7 @@ public class Polyline extends Vector{
 		double len = line.getLength();
 		double angle1 = Math.toDegrees(Math.atan2(.5*caliber,len));
 		double angle2 = line.getVector2D().getAngle();
-		
+
 		//求光栏下边界
 		Line down = new Line(angle2-angle1, p1);
 		//求光栏上边界
@@ -320,19 +320,28 @@ public class Polyline extends Vector{
 				Point b1 = line3.intercourse(newDown);
 				Point b2 = line3.intercourse(newUp);
 				//检查新光栏的交点是否在原光栏内
-				//如果在就使用新光栏，不在就构建另一个光栏
-				if(isInLightBar(up, down, b1) && isInLightBar(up, down, b2)) {
-					down = newDown;
+				//如果在就使用新光栏
+				Line originUp = up;
+				Line originDown = down;
+				if(isInLightBar(originUp,originDown,b1)){
 					up = newUp;
-				}else {
-					//只有b1在光栏内
-					if(isInLightBar(up, down, b1)) {
-						down = new Line(p1,b1);
-					}
-					if(isInLightBar(up, down, b2)) {
-						up = new Line(p1,b2);
-					}
 				}
+				if(isInLightBar(originUp,originDown,b2)){
+					down = newDown;
+				}
+
+//				if(isInLightBar(up, down, b1) && isInLightBar(up, down, b2)) {
+//					down = newDown;
+//					up = newUp;
+//				}else {
+//					//只有b1在光栏内
+//					if(isInLightBar(up, down, b1)) {
+//						down = new Line(p1,b1);
+//					}
+//					if(isInLightBar(up, down, b2)) {
+//						up = new Line(p1,b2);
+//					}
+//				}
 				
 			}else {
 				points.get(i-1).setEnable(true);
