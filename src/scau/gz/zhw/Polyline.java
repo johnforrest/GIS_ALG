@@ -324,10 +324,10 @@ public class Polyline extends Vector{
 				Line originUp = up;
 				Line originDown = down;
 				if(isInLightBar(originUp,originDown,b1)){
-					up = newUp;
+					down = newDown;
 				}
 				if(isInLightBar(originUp,originDown,b2)){
-					down = newDown;
+					up = newUp;
 				}
 
 //				if(isInLightBar(up, down, b1) && isInLightBar(up, down, b2)) {
